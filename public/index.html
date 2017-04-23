@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://unpkg.com/vue@3"></script>
+  </head>
+  <body>
+    <div id="app">{{ message }}
+      <foo></foo>
+    </div>
+    <script>
+      const CancelToken = axios.CancelToken;
+      const source = CancelToken.source();
+
+      const res = axios.get('http://localhost:3000/aaa', {
+        cancelToken: source.token
+      }).then((res) => {
+        console.log(res.data)
+      }).catch((err) => {
+        console.error(err, axios.isCancel(err));
+      });
+
+      const foo = Vue.defineComponent({
+        template: "<div>abc</div>",
+        setup() {
+          Vue.onBeforeUnmount(() => {
+            console.log("gya-n")
+            source.cancel();
+          });
+        }
+      })
+
+      Vue.createApp({
+        template: `
+        <div>
+          {{ message }}
+          {{ flag }}
+          <button :onClick="shout" >shout</button>
+          <foo v-if="flag"></foo>
+        </div>
+        `,
+        components: {
+          foo
+        },
+        setup() {
+          let val = Vue.ref(false);
+          const shout = () => {
+            val.value = !val.value;
+          }
+          const flag = Vue.computed(() => {
+            return val.value
+          })
+
+          return {
+            message: "hello wwww",
+            flag,
+            shout,
+          }
+        }
+      }).mount('#app')
+    </script>
+  </body>
+</html>
