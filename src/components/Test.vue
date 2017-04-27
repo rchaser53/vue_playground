@@ -8,7 +8,7 @@
     <input v-model="aon" />
     <div>{{ aon }}</div>
 
-    <TestChild />
+    <TestChild :aon="aon" />
   </div>
 </template>
 
@@ -35,6 +35,7 @@
         aon: ''
       }
     },
+    // component: Vue.component('TestChild', TestChild)
     component: Vue.component('TestChild', TestChild)
   }
 </script>
