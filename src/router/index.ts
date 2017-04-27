@@ -6,6 +6,7 @@ import Test from '@/components/Test'
 Vue.use(Router)
 
 export default new Router({
+  mode: 'history',
   routes: [
     {
       path: '/',
@@ -20,6 +21,14 @@ export default new Router({
       //   template: '<div>{{message}}</div>',
       //   props: ['message']
       // })
+    },
+    // after winning
+    { 
+      path: '*',
+      name: 'aaa',
+      component: {
+        template: '<div>hazure</div>'
+      }
     }
   ]
 })
