@@ -7,11 +7,15 @@
     <h2>use data-binding</h2>
     <input v-model="aon" />
     <div>{{ aon }}</div>
+
+    <TestChild />
   </div>
 </template>
 
 <script lang="ts">
+  import Vue from 'vue'
   import { mapState, mapActions } from 'vuex'
+  import TestChild from './TestChild'
 
   export interface State {
     nState: string
@@ -30,6 +34,7 @@
       return {
         aon: ''
       }
-    }
+    },
+    component: Vue.component('TestChild', TestChild)
   }
 </script>
