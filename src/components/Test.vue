@@ -1,8 +1,11 @@
 <template>
   <div>
-    <h1>{{ msg }}</h1>
-    <div>nya-n</div>
-    <input :value="message" @input="changeState">
+    <h2>use vuex</h2>
+    <input :value="nState" @input="changeState">
+    <div>{{ nState }}</div>
+
+    <h2>use data-binding</h2>
+    <input v-model="aon" />
     <div>{{ aon }}</div>
   </div>
 </template>
@@ -16,14 +19,15 @@
 
   export default {
     computed: mapState < State > ({
-      message: state => state.nState
+      nState: (state) => {
+        return state.nState
+      }
     }),
     methods: mapActions([
       'changeState'
     ]),
     data: () => {
       return {
-        msg: 234,
         aon: ''
       }
     }
