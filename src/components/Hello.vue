@@ -20,10 +20,9 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 export default {
   name: 'hello',
-  msg: 'nyan',
   data () {
     return {
       msg: 'Welcome to Your Vue.js App'

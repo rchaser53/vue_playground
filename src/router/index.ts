@@ -9,13 +9,17 @@ export default new Router({
   routes: [
     {
       path: '/',
+      // name is used for recursive calling
       name: 'Hello',
       component: Hello
     },
     {
       path: '/nyan',
-      name: 'nyan',
-      component: Vue.component('Test', Test)
+      component: Test
+      // component: Vue.component('Test', {
+      //   template: '<div>{{message}}</div>',
+      //   props: ['message']
+      // })
     }
   ]
 })
