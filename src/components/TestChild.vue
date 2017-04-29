@@ -1,6 +1,7 @@
 <template>
   <div>
     <h2>{{aon}}</h2>
+    <router-link to="nyan2">nyan2</router-link>
   </div>
 </template>
 

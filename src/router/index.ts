@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Hello from '@/components/Hello'
 import Test from '@/components/Test'
+import Test2 from '@/components/Test2'
 
 Vue.use(Router)
 
@@ -17,10 +18,11 @@ export default new Router({
     {
       path: '/nyan',
       component: Test
-      // component: Vue.component('Test', {
-      //   template: '<div>{{message}}</div>',
-      //   props: ['message']
-      // })
+    },
+    {
+      path: '/nyan2',
+      alias: ['/nyan3'],
+      component: Test2
     },
     // after winning
     { 
