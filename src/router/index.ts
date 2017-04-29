@@ -10,9 +10,19 @@ export default new Router({
   mode: 'history',
   routes: [
     {
-      path: '/',
+      path: '/hello',
       // name is used for recursive calling
       name: 'Hello',
+      component: Hello,
+      children: [
+        {
+          path: 'and-goodbye',
+          component: Test
+        }
+      ]
+    },
+    {
+      path: '/hello-without-test',
       component: Hello
     },
     {
