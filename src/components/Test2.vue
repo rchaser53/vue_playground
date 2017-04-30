@@ -6,6 +6,9 @@
     <div>
       <router-link to="nyan3">nyan3</router-link>
     </div>
+    <div>
+      <router-link to="scroll">scroll</router-link>
+    </div>
     <input v-on:change="nyan">
   </div>
 </template>
