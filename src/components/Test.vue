@@ -6,7 +6,7 @@
 
     <h2>use data-binding</h2>
     <input v-model="aon" />
-    <div>{{ aon }}</div>
+    <div v-on:click="hoge">{{ aon }}</div>
 
     <TestChild :aon="aon" />
   </div>
@@ -27,15 +27,28 @@
         return state.nState
       }
     }),
-    methods: mapActions([
-      'changeState'
-    ]),
+    mixins: [{
+      // if some property has already declared, it will be ignored.
+      // i mean this 'data' is ignored
+      data: () => {
+        return {
+          aon: 'hogerappa'
+        }
+      }
+    }],
+    methods: {
+      ...mapActions([
+        'changeState'
+      ]),
+      hoge: () => {
+        console.log(111)
+      }
+    },
     data: () => {
       return {
         aon: ''
       }
     },
-    // component: Vue.component('TestChild', TestChild)
     component: Vue.component('TestChild', TestChild)
   }
 </script>
