@@ -47,7 +47,10 @@ exports.cssLoaders = function (options) {
   // https://vue-loader.vuejs.org/en/configurations/extract-css.html
   return {
     css: generateLoaders(),
-    postcss: generateLoaders(),
+    postcss: (webpack) => [
+      require("postcss-import")({ addDependencyTo: webpack }),
+      require('postcss-cssnext')()
+    ],
     less: generateLoaders('less'),
     sass: generateLoaders('sass', { indentedSyntax: true }),
     scss: generateLoaders('sass'),
