@@ -4,6 +4,7 @@ import Hello from '@/components/Hello'
 import Test from '@/components/Test'
 import Test2 from '@/components/Test2'
 import Scroll from '@/components/Scroll'
+import Animation from '@/components/Animation'
 
 Vue.use(Router)
 
@@ -38,6 +39,10 @@ export default new Router({
     {
       path: '/scroll',
       component: Scroll
+    },
+    {
+      path: '/animation',
+      component: Animation
     },
     // after winning
     { 
