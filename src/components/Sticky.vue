@@ -1,5 +1,5 @@
 <template>
-  <div style="position: relative;">
+  <div @click="nyan" style="position: relative;">
     <div class="outer">
       <div class="sticky-top">top</div>
       <div class="backbone"></div>
@@ -13,10 +13,24 @@
 </template>
 
 <script lang="ts">
-export default {
-  name: 'sticky',
-  data () {
-    return {}
+import Vue from 'vue'
+import Component from 'vue-class-component'
+
+@Component({
+  props: {
+    propMessage: String
+  }
+})
+export default class extends Vue {
+  name = 'sticky'
+
+  constructor () {
+    super()
+    this.hoge = 1
+  }
+  hoge: number
+  nyan () {
+    console.log(this.hoge)
   }
 }
 </script>
