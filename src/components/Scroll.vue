@@ -1,10 +1,10 @@
 <template>
   <div>
-    <div v-for="item in items">
+    <div :key='index' v-for="(item, index) in items">
       {{ item }}
     </div>
     <p class="poyo">poyo</p>
-    <div v-for="item in items">
+    <div :key='index' v-for="(item, index) in items">
       {{ item }}
     </div>
   </div>
