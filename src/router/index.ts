@@ -1,10 +1,10 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Hello from '@/components/Hello'
-import Test from '@/components/Test'
-import Test2 from '@/components/Test2'
-import Scroll from '@/components/Scroll'
-import Animation from '@/components/Animation'
+import Hello from '../components/Hello.vue'
+import Test from '../components/Test.vue'
+import Test2 from '../components/Test2.vue'
+import Scroll from '../components/Scroll.vue'
+import Animation from '../components/Animation.vue'
 
 Vue.use(Router)
 

@@ -15,7 +15,7 @@
 <script lang="ts">
   import Vue from 'vue'
   import { mapState, mapActions } from 'vuex'
-  import TestChild from './TestChild'
+  import TestChild from './TestChild.vue'
 
   export interface State {
     nState: string
