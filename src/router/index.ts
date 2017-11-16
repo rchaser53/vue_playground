@@ -5,12 +5,17 @@ import Test from '../components/Test.vue'
 import Test2 from '../components/Test2.vue'
 import Scroll from '../components/Scroll.vue'
 import Animation from '../components/Animation.vue'
+import VueTableApp from '../components/VueTable2/VueTable2App.vue'
 
 Vue.use(Router)
 
 export default new Router({
   mode: 'history',
   routes: [
+    {
+      path: '/vuetable2',
+      component: VueTableApp
+    },
     {
       path: '/hello',
       // name is used for recursive calling

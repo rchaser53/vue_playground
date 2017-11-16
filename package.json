@@ -19,7 +19,9 @@
     "postcss-import": "^9.1.0",
     "vue": "^2.2.6",
     "vue-class-component": "^6.1.0",
+    "vue-events": "^3.1.0",
     "vue-router": "^2.3.1",
+    "vuetable-2": "^1.7.0",
     "vuex": "^2.3.1"
   },
   "devDependencies": {
@@ -83,7 +85,7 @@
     "vue-loader": "^11.3.4",
     "vue-style-loader": "^2.0.5",
     "vue-template-compiler": "^2.2.6",
-    "webpack": "^2.3.3",
+    "webpack": "^3.8.1",
     "webpack-bundle-analyzer": "^2.2.1",
     "webpack-dev-middleware": "^1.10.0",
     "webpack-hot-middleware": "^2.18.0",
