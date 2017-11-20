@@ -28,8 +28,6 @@ Vue.use(VueEvents)
 Vue.component('filter-bar', FilterBar)
 Vue.component('my-detail-row', DetailRow)
 
-console.log(234)
-
 export default {
   // name: 'vue-table',
   mounted () {
@@ -38,23 +36,19 @@ export default {
     this.$on('filter-reset', e => this.onFilterReset())
   },
 
-  created() {
+  created () {
     this.$events.listen('filter-set', filterText => {
       this.moreParams = {
         'filter': filterText
       } // End of moreParams
-      
-      Vue.nextTick( () => this.$refs.vuetable.refresh())
+      Vue.nextTick(() => this.$refs.vuetable.refresh())
     }) // End of Filter-set Listener
-
     this.$events.listen('filter-reset', filterText => {
       this.moreParams = {}
 
-      Vue.nextTick( () => this.$refs.vuetable.refresh())
+      Vue.nextTick(() => this.$refs.vuetable.refresh())
     }) // End of Filter-reset Listener
-    
-  }, // End of created 
-
+  }, // End of created
   data: function () {
     return {
       hogeData: [

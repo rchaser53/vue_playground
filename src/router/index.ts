@@ -6,6 +6,7 @@ import Test2 from '../components/Test2.vue'
 import Scroll from '../components/Scroll.vue'
 import Animation from '../components/Animation.vue'
 import VueTableApp from '../components/VueTable2/VueTable2App.vue'
+import ElementTable from '../components/Element/Table.vue'
 
 Vue.use(Router)
 
@@ -15,6 +16,10 @@ export default new Router({
     {
       path: '/vuetable2',
       component: VueTableApp
+    },
+    {
+      path: '/element',
+      component: ElementTable
     },
     {
       path: '/hello',
@@ -44,10 +49,6 @@ export default new Router({
     {
       path: '/scroll',
       component: Scroll
-    },
-    {
-      path: '/animation',
-      component: Animation
     },
     // after winning
     { 
