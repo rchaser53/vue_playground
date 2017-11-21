@@ -1,18 +1,23 @@
 <template>
   <div>
-    <input @change="changeFilterValue" />
+    <div class="actionArea">
+      <input @change="changeFilterValue" />
+      <button @click="fireRemoveRows">Delete Rows</button>
+    </div>
+    
     <el-pagination layout="prev, pager, next" @current-change="changePage" :page-size="pageSize" :total="dataLength" />
-    <el-table :empty-text="'empty'" :data="filteredData"
+    <el-table :empty-text="'empty'" :data="filteredData" @selection-change="handleSelectionChange"
       :default-sort="{prop: 'email', order: 'descending'}" style="width: 100%">
       <!-- <div slot="empty">whatever wanna render for empty data</div> -->
       <el-table-column type="index" sortable />
+      <el-table-column type="selection" width="55" />
       <el-table-column class-name="filter-column" prop="email" label="email" sortable />
       <el-table-column prop="firstname" label="First Name" sortable />
       <el-table-column prop="lastname" label="Last Name" sortable />
       <el-table-column label="Operations">
         <template slot-scope="scope">
           <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">Edit</el-button>
-          <el-button size="mini" type="danger" @click="handleDelete(scope.$index, scope.row)">Delete</el-button>
+          <el-button size="mini" type="danger" @click="removeTargetRows([scope.row])">Delete</el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -52,7 +57,8 @@
         tableData: [],
         currentPage: 1,
         filterValue: '',
-        loading: true
+        loading: true,
+        deleteTargetRows: []
       }
     },
     components: {
@@ -69,11 +75,23 @@
       changeFilterValue (event) {
         Vue.set(this, 'filterValue', event.target.value)
       },
+      fireRemoveRows () {
+        this.removeTargetRows(this.deleteTargetRows)
+        Vue.set(this, 'deleteTargetRows', [])
+      },
       handleEdit (index, row) {
         console.log(index, row, 'edit')
       },
-      handleDelete (index, row) {
-        console.log(index, row, 'delete')
+      handleSelectionChange (targetRows) {
+        Vue.set(this, 'deleteTargetRows', targetRows)
+      },
+      removeTargetRows (targetRows) {
+        const newData = targetRows.reduce((stack, current) => {
+          return stack.filter((targetData) => {
+            return targetData.id !== current.id
+          })
+        }, this.tableData)
+        Vue.set(this, 'tableData', newData)
       }
     },
     computed: {
@@ -97,5 +115,8 @@
   }
 </script>
 
-<style>
+<style scoped>
+  .actionArea {
+    display: flex;
+  }
 </style>
