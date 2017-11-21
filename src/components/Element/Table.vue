@@ -11,9 +11,9 @@
       <!-- <div slot="empty">whatever wanna render for empty data</div> -->
       <el-table-column type="index" sortable />
       <el-table-column type="selection" width="55" />
-      <el-table-column class-name="filter-column" prop="email" label="email" sortable />
+      <el-table-column prop="email" label="email" class-name="filter-column" sortable />
       <el-table-column prop="firstname" label="First Name" sortable />
-      <el-table-column prop="lastname" label="Last Name" sortable />
+      <el-table-column prop="lastname" label="Last Name" class-name="forMobile" sortable />
       <el-table-column label="Operations">
         <template slot-scope="scope">
           <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">Edit</el-button>
@@ -115,8 +115,14 @@
   }
 </script>
 
-<style scoped>
+<style>
   .actionArea {
     display: flex;
+  }
+
+  @media (max-width: 767px) {
+    .forMobile {
+      display: none;
+    }
   }
 </style>
