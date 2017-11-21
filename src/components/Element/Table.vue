@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="actionArea">
-      <input @change="changeFilterValue" />
+      <input ref="filter" @change="changeFilterValue" />
       <button @click="fireRemoveRows">Delete Rows</button>
     </div>
     
@@ -51,6 +51,10 @@
         })
 
       Loading.service({ fullscreen: true })
+
+      setInterval(() => {
+        Vue.set(this, 'filterValue', this.$refs.filter.value)
+      }, 200)
     },
     data () {
       return {
