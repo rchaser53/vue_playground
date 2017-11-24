@@ -6,7 +6,7 @@
     </div>
     
     <el-pagination layout="prev, pager, next" @current-change="changePage" :page-size="pageSize" :total="dataLength" />
-    <el-table :empty-text="'empty'" :data="filteredData" @selection-change="handleSelectionChange"
+    <el-table :empty-text="'empty'" :data="filteredData" @selection-change="handleSelectionChange" v-loading="loading"
       :default-sort="{prop: 'email', order: 'descending'}" style="width: 100%">
       <!-- <div slot="empty">whatever wanna render for empty data</div> -->
       <el-table-column type="index" sortable />
@@ -37,6 +37,9 @@
   import 'element-theme-chalk/lib/table.css'
   import 'element-theme-chalk/lib/pagination.css'
   import 'element-theme-chalk/lib/icon.css'
+  import 'element-theme-chalk/lib/loading.css'
+
+  Vue.use(Loading.directive)
 
   export default {
     mounted () {
@@ -45,12 +48,14 @@
       }).then((ret) => ret.json())
         .then((ret) => {
           Vue.set(this, 'tableData', ret.data)
+          // actually doen't need to setTimeout. this setTimeout exists just to show loading
+          setTimeout(() => {
+            Vue.set(this, 'loading', false)
+          }, 1000)
         })
         .catch((err) => {
           console.error(err)
         })
-
-      Loading.service({ fullscreen: true })
 
       setInterval(() => {
         Vue.set(this, 'filterValue', this.$refs.filter.value)
