@@ -6,8 +6,8 @@
     </div>
     
     <el-pagination layout="prev, pager, next" @current-change="changePage" :page-size="pageSize" :total="dataLength" />
-    <el-table :empty-text="'empty'" :data="filteredData" @selection-change="handleSelectionChange" v-loading="loading"
-      :default-sort="{prop: 'email', order: 'descending'}" style="width: 100%">
+    <el-table :empty-text="'empty'" :data="filteredData" @selection-change="handleSelectionChange" @header-click="sortTableRow"
+      v-loading="loading" :default-sort="{prop: 'email', order: 'descending'}" style="width: 100%">
       <!-- <div slot="empty">whatever wanna render for empty data</div> -->
       <el-table-column type="index" sortable />
       <el-table-column type="selection" width="55" />
@@ -101,6 +101,9 @@
           })
         }, this.tableData)
         Vue.set(this, 'tableData', newData)
+      },
+      sortTableRow (columnData) {
+        console.log('you can get columnData to sort', columnData)
       }
     },
     computed: {
