@@ -1,18 +1,40 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js + TypeScript App" />
+    {{ funyan }}
+    <HelloWorld :msg="state.message" />
+    <input @change="changeMessage" />
   </div>
 </template>
 
 <script lang="ts">
-import Vue from "vue";
 import HelloWorld from "./components/HelloWorld.vue";
+import { createComponent, reactive, ref } from "@vue/composition-api";
 
-export default Vue.extend({
+interface HTMLElementEvent<T extends HTMLElement> extends Event {
+  target: T;
+}
+
+export default createComponent({
   name: "app",
   components: {
     HelloWorld
+  },
+  setup() {
+    const state = reactive({
+      message: "initialValue"
+    });
+
+    const funyan = ref<number>(111);
+    const changeMessage = (message: HTMLElementEvent<HTMLInputElement>) => {
+      state.message = message.target.value;
+      funyan.value++;
+    };
+
+    return {
+      state,
+      changeMessage,
+      funyan
+    };
   }
 });
 </script>
