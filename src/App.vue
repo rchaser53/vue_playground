@@ -2,6 +2,7 @@
   <div id="app">
     {{ funyan }}
     <HelloWorld :msg="state.message" />
+    <button @click="clickRectiveTest">{{ foo.x }}</button>
     <input @change="changeMessage" />
   </div>
 </template>
@@ -12,6 +13,13 @@ import { createComponent, reactive, ref } from "@vue/composition-api";
 
 interface HTMLElementEvent<T extends HTMLElement> extends Event {
   target: T;
+}
+
+function useMousePosition() {
+  return reactive({
+    x: 1,
+    y: 2
+  });
 }
 
 export default createComponent({
@@ -30,10 +38,17 @@ export default createComponent({
       funyan.value++;
     };
 
+    const foo = useMousePosition();
+    const clickRectiveTest = (_: HTMLElementEvent<HTMLInputElement>) => {
+      foo.x++;
+    };
+
     return {
       state,
       changeMessage,
-      funyan
+      clickRectiveTest,
+      funyan,
+      foo
     };
   }
 });
