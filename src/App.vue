@@ -15,7 +15,7 @@ interface HTMLElementEvent<T extends HTMLElement> extends Event {
   target: T;
 }
 
-function useMousePosition() {
+const useMousePosition = () => {
   return reactive({
     x: 1,
     y: 2
