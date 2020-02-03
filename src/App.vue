@@ -9,18 +9,20 @@
 
 <script lang="ts">
 import HelloWorld from "./components/HelloWorld.vue";
-import { createComponent, reactive, ref } from "@vue/composition-api";
+import { createComponent, provide, reactive, ref } from "@vue/composition-api";
 
 interface HTMLElementEvent<T extends HTMLElement> extends Event {
   target: T;
 }
+
+export const SymbolA = Symbol();
 
 const useMousePosition = () => {
   return reactive({
     x: 1,
     y: 2
   });
-}
+};
 
 export default createComponent({
   name: "app",
@@ -31,6 +33,7 @@ export default createComponent({
     const state = reactive({
       message: "initialValue"
     });
+    provide(SymbolA, "di");
 
     const funyan = ref<number>(111);
     const changeMessage = (message: HTMLElementEvent<HTMLInputElement>) => {
